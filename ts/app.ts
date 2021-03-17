@@ -1,0 +1,28 @@
+const formulario:any = document.querySelector('#formulario');
+const resultado:any = document.querySelector('#resultado');
+const busqueda:any = document.querySelector('#busqueda');
+
+document.addEventListener('DOMContentLoaded', () => {
+    formulario.addEventListener('submit', validateForm);
+});
+
+const validateForm = (e:any):void => {
+    e.preventDefault();
+    if(busqueda.value.trim() === ''){
+        printMessage('El campo de busquedad esta vacio');
+        return;
+    };
+};
+
+const printMessage = (message:string):void => {
+    const alert:any = document.querySelector('.alerta');
+    if(!alert){
+        const divMessage:any = document.createElement('div');
+        divMessage.classList.add('bg-gray-100', 'p-3', 'text-center', 'mt-3', 'alerta');
+        divMessage.textContent = message;
+        formulario.appendChild(divMessage);    
+        setTimeout(() => {
+            divMessage.remove();
+        },3000)
+    };
+};
